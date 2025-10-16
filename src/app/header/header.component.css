@@ -9,7 +9,7 @@ header {
   text-align: center;
   background: linear-gradient(
     to bottom,
-    #640303,
+    #640d0d,
     #b85151
   );
   padding: 1rem;
@@ -41,7 +41,7 @@ p {
   }
 
   img {
-    width: 4.5rem;
+    width: 8rem;
   }
 
   h1 {
