@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Recipe } from '../recipes/recipes.model';
 
 @Component({
   selector: 'app-recipe',
@@ -8,5 +9,7 @@ import { Component } from '@angular/core';
   styleUrl: './recipe.component.css'
 })
 export class RecipeComponent {
+  @Input({ required: true }) recipe!: Recipe;
+
 
 }

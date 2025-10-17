@@ -1,0 +1,26 @@
+div {
+  background-color: rgb(169, 113, 73);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+  border-radius: 8px;
+  margin: 1rem;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+}
+
+.recipe-name {
+  font-size: x-large;
+  margin: 0 1rem 0 1rem;
+}
+
+p {
+  margin: 0 1rem;
+  font-size: small;
+}
+
+.body-label {
+  font-size: medium;
+}
+
+.body {
+  font-size: small;
+}

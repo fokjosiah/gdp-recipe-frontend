@@ -1,0 +1,8 @@
+.scrollable {
+  overflow-y: auto;
+  padding: 1rem;
+  max-height: 60vh;
+  scrollbar-color: transparent transparent;
+}
+
+

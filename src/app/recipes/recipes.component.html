@@ -1,3 +1,6 @@
-@for (recipe of recipes; track recipe.id) {
-  <div>{{ recipe.name }}</div>
-}
+<div class="scrollable">
+  @for (recipe of recipes; track recipe.id) {
+    <app-recipe [recipe]="recipe" />
+  }
+</div>
+

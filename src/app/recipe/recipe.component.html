@@ -1,1 +1,9 @@
-<p>recipe works!</p>
+<div>
+  <p class="recipe-name"><b>{{ recipe.name }}</b></p>
+  <p>Difficulty: <i>{{ recipe.difficulty }}</i></p>
+  <p>Prep time: {{ recipe.prep_time_mins }} mins</p>
+  <br>
+  <p><u>Ingredients:</u><span class="body"> {{ recipe.ingredients.join(', ') }}</span></p>
+  <br>
+  <p class="body-label"><b>Instructions:</b><span class="body">  {{ recipe.instructions }}</span></p>
+</div>
