@@ -1,7 +1,7 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { RecipesService } from './recipes.service';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { Recipe } from './recipes.model';
 import { RecipeComponent } from '../recipe/recipe.component';
+import { RecipesService } from './recipes.service';
 
 @Component({
   selector: 'app-recipes',
@@ -10,18 +10,12 @@ import { RecipeComponent } from '../recipe/recipe.component';
   templateUrl: './recipes.component.html',
   styleUrl: './recipes.component.css'
 })
-export class RecipesComponent implements OnInit{
-  private recipesService = inject(RecipesService);
+export class RecipesComponent {
+  @Input({ required:true }) recipes!: Recipe[];
+  @Output() favoriteClicked = new EventEmitter<string>();
 
-  recipes: Recipe[] = [];
-
-  ngOnInit() {
-    this.recipesService.getRecipes()
-    .subscribe({
-      next: (data) => {
-        this.recipes = data;
-      },
-      error: (err) => console.log(err),
-    })
+  onFavoriteClicked(id: string) {
+    //toggle the favorite value of the given recipe by id
+    this.favoriteClicked.emit(id);
   }
 }

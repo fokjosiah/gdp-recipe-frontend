@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Signal, WritableSignal } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
@@ -8,4 +8,6 @@ import { NavbarComponent } from '../navbar/navbar.component';
   styleUrl: './header.component.css',
   imports: [NavbarComponent]
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+  @Input({ required: true }) currentPage!: WritableSignal<string>;
+}

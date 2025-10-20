@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Recipe } from '../recipes/recipes.model';
 
 @Component({
@@ -10,10 +10,10 @@ import { Recipe } from '../recipes/recipes.model';
 })
 export class RecipeComponent {
   @Input({ required: true }) recipe!: Recipe;
-  isFavorited = false;
+  @Output() favoriteClicked = new EventEmitter<string>();
 
   toggleFavorite() {
-    this.isFavorited = !this.isFavorited;
+    this.favoriteClicked.emit(this.recipe.id);
   }
 
 }

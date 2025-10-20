@@ -7,4 +7,5 @@ export interface Recipe {
   instructions: string,
   prep_time_mins: number,
   difficulty: RecipeDifficulty,
+  favorite: boolean
 }

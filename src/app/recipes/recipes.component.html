@@ -1,6 +1,6 @@
 <div class="scrollable">
   @for (recipe of recipes; track recipe.id) {
-    <app-recipe [recipe]="recipe" />
+    <app-recipe [recipe]="recipe" (favoriteClicked)="onFavoriteClicked($event)"/>
   }
 </div>
 
