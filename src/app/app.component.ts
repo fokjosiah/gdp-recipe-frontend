@@ -17,8 +17,6 @@ export class AppComponent implements OnInit{
   private recipeService = inject(RecipesService);
   recipes!: Recipe[];
   favoriteRecipes!: Recipe[];
-
-
   currentPage:WritableSignal<string> = signal('');
 
   ngOnInit() {
@@ -53,8 +51,5 @@ export class AppComponent implements OnInit{
       const newFavorite = this.recipes.find(r => r.id === id);
       this.favoriteRecipes.push(newFavorite!);
     }
-    console.log(id);
-
-    console.log(this.recipes);
   }
 }

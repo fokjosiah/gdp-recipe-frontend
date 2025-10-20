@@ -1,5 +1,5 @@
 <div class="navbar">
-  <p (click)="onClickFavorite()">⭐ Favorites</p>
-  <p (click)="onClickRecipe()">🧾 My Recipes</p>
-  <p (click)="onClickCreate()">🧑🏻‍🍳 Create New</p>
+  <p (click)="onClickFavorite()" [class.underlined]="currentPage() === 'favorites'">⭐ Favorites</p>
+  <p (click)="onClickRecipe()" [class.underlined]="currentPage() === 'recipes'">🧾 My Recipes</p>
+  <p (click)="onClickCreate()" [class.underlined]="currentPage() === 'create'">🧑🏻‍🍳 Create New</p>
 </div>
