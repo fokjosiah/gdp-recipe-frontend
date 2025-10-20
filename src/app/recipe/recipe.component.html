@@ -1,5 +1,36 @@
-<div>
+<div class="recipe-card">
+<div class="recipe-header">
   <p class="recipe-name"><b>{{ recipe.name }}</b></p>
+  <div class="favorite-btn">
+    <svg
+    viewBox="0 0 24 24"
+    width="24"
+    height="24"
+    class="star-icon"
+    [class.favorited]="isFavorited"
+    (click)="toggleFavorite()">
+      <path d="M12 17.3l-4.47 2.64a1 1 0 0 1-1.48-1.07l1.2-5.02-3.9-3.4a1 1 0 0 1 .58-1.76l5.12-.44
+               2.03-4.65a1 1 0 0 1 1.82 0l2.03 4.65 5.12.44a1 1 0 0 1 .58 1.76l-3.9 3.4
+               1.2 5.02a1 1 0 0 1-1.48 1.07L12 17.3z"
+            stroke="white"
+            stroke-width="0.5"
+            stroke-linejoin="round"
+            stroke-linecap="round" />
+    </svg>
+    <!-- Confetti -->
+    <div class="confetti-container">
+      <span class="confetti c1"></span>
+      <span class="confetti c2"></span>
+      <span class="confetti c3"></span>
+      <span class="confetti c4"></span>
+      <span class="confetti c5"></span>
+      <span class="confetti c6"></span>
+      <span class="confetti c7"></span>
+      <span class="confetti c8"></span>
+    </div>
+  </div>
+
+</div>
   <p>Difficulty: <i>{{ recipe.difficulty }}</i></p>
   <p>Prep time: {{ recipe.prep_time_mins }} mins</p>
   <br>

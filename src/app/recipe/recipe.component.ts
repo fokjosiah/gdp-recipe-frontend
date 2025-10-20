@@ -10,6 +10,10 @@ import { Recipe } from '../recipes/recipes.model';
 })
 export class RecipeComponent {
   @Input({ required: true }) recipe!: Recipe;
+  isFavorited = false;
 
+  toggleFavorite() {
+    this.isFavorited = !this.isFavorited;
+  }
 
 }
