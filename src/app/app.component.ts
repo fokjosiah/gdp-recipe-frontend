@@ -13,48 +13,10 @@ import { map } from 'rxjs';
     styleUrl: './app.component.css',
     imports: [HeaderComponent, RecipesComponent]
 })
-export class AppComponent implements OnInit{
+export class AppComponent {
   private recipeService = inject(RecipesService);
-  recipes!: Recipe[];
-  favoriteRecipes!: Recipe[];
-
-
+  recipes = this.recipeService.recipes;
+  favoriteRecipes = this.recipeService.favoriteRecipes;
+  toggleFavoriteRecipe = this.recipeService.toggleFavorite;
   currentPage:WritableSignal<string> = signal('');
-
-  ngOnInit() {
-    this.recipeService.getRecipes()
-    .pipe(
-      map(recipes => recipes.map(recipe => (
-        {
-          //create new recipe object with the favorite field that the front end needs
-          ...recipe,
-          favorite: false
-        }
-      )))
-    )
-    .subscribe({
-      next: (data) => {
-        this.recipes = data;
-        this.favoriteRecipes = this.recipes.filter(r => r.favorite);
-      },
-      error: (err) => console.log(err),
-    })
-  }
-
-  toggleFavoriteRecipe(id: string) {
-    this.recipes = this.recipes.map(r => r.id === id ? {...r, favorite: !r.favorite} : r);
-    const favoriteExists = this.favoriteRecipes.some(r => r.id === id);
-    if (favoriteExists) {
-      //if it already exists then we need to remove it
-      this.favoriteRecipes = this.favoriteRecipes.filter(r => r.id !== id);
-    }
-    else {
-      //if not already a favorite then add to favorites
-      const newFavorite = this.recipes.find(r => r.id === id);
-      this.favoriteRecipes.push(newFavorite!);
-    }
-    console.log(id);
-
-    console.log(this.recipes);
-  }
 }

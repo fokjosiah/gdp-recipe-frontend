@@ -2,10 +2,10 @@
 
 <main>
   @if (currentPage() === 'recipes') {
-    <app-recipes [recipes]="recipes" (favoriteClicked)="toggleFavoriteRecipe($event)" />
+    <app-recipes [recipes]="recipes()" (favoriteClicked)="toggleFavoriteRecipe($event)" />
   }
   @else if (currentPage() === 'favorites') {
-    <app-recipes [recipes]="favoriteRecipes" (favoriteClicked)="toggleFavoriteRecipe($event)" />
+    <app-recipes [recipes]="favoriteRecipes()" (favoriteClicked)="toggleFavoriteRecipe($event)" />
   }
   @else if (currentPage() === 'create') {
 
