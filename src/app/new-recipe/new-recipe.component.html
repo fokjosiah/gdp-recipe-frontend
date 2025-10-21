@@ -1,1 +1,33 @@
-<p>new-recipe works!</p>
+<div class="backdrop" (click)="onCancel()"></div>
+  <dialog open class="create-form">
+      <form>
+        <p class="create-form-title">Add a new recipe:</p>
+
+        <div class="form-row">
+
+          <div class="form-field">
+            <label for="name" class="form-label">Name:</label>
+            <input id="name" class="form-input">
+          </div>
+
+          <div class="form-field">
+            <label for="difficulty" class="form-label">Difficulty:</label>
+            <select id="difficulty" class="form-input">
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+          </div>
+
+        </div>
+
+          <div class="ingredients">
+            <div class="form-field">
+              <label for="ingredients" class="form-label">Ingredients:</label>
+              <textarea id="ingredients" class="form-input"></textarea>
+            </div>
+          </div>
+
+      </form>
+  </dialog>
+

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-new-recipe',
@@ -8,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './new-recipe.component.css'
 })
 export class NewRecipeComponent {
+  @Output() close = new EventEmitter<void>();
 
+  onCancel() {
+    this.close.emit();
+  }
 }

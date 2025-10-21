@@ -1,4 +1,4 @@
-import { Component, Input, Signal, WritableSignal } from '@angular/core';
+import { Component, EventEmitter, Input, Output, Signal, WritableSignal } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -9,6 +9,7 @@ import { Component, Input, Signal, WritableSignal } from '@angular/core';
 })
 export class NavbarComponent {
   @Input({ required: true }) currentPage!: WritableSignal<string>;
+  @Output() openCreateRecipe = new EventEmitter<void>();
 
   onClickRecipe() {
     //update the currently showing page to recipes
@@ -18,6 +19,6 @@ export class NavbarComponent {
     this.currentPage.set("favorites")
   }
   onClickCreate() {
-    this.currentPage.set("create")
+    this.openCreateRecipe.emit();
   }
 }

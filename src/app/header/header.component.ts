@@ -1,4 +1,4 @@
-import { Component, Input, Signal, WritableSignal } from '@angular/core';
+import { Component, EventEmitter, Input, Output, Signal, WritableSignal } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
@@ -10,4 +10,9 @@ import { NavbarComponent } from '../navbar/navbar.component';
 })
 export class HeaderComponent {
   @Input({ required: true }) currentPage!: WritableSignal<string>;
+  @Output() openCreateRecipe = new EventEmitter<void>();
+
+  onOpenCreateRecipe() {
+    this.openCreateRecipe.emit();
+  }
 }
