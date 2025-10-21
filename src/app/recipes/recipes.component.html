@@ -1,6 +1,12 @@
-<div class="scrollable">
+@if (!recipes?.length) {
+  <!-- if recipes have not been loaded or passed in yet display fallback text -->
+   <h2 id="fallback">Nothing to see here... yet 😉</h2>
+}
+@else {
+  <div class="scrollable">
   @for (recipe of recipes; track recipe.id) {
     <app-recipe [recipe]="recipe" (favoriteClicked)="onFavoriteClicked($event)"/>
   }
-</div>
+  </div>
+}
 

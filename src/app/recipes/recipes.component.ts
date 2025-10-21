@@ -11,7 +11,7 @@ import { RecipesService } from './recipes.service';
   styleUrl: './recipes.component.css'
 })
 export class RecipesComponent {
-  @Input({ required:true }) recipes!: Recipe[];
+  @Input({ required:true }) recipes?: Recipe[];
   @Output() favoriteClicked = new EventEmitter<string>();
 
   onFavoriteClicked(id: string) {
