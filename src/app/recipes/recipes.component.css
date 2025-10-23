@@ -3,6 +3,8 @@
   padding: 1rem;
   max-height: 60vh;
   scrollbar-color: transparent transparent;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+  border-radius: 8px;
 }
 
 

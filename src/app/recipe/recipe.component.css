@@ -119,7 +119,7 @@ p {
 }
 
 /* Trigger confetti animation when star is favorited */
-.star-icon.favorited:hover ~ .confetti-container .confetti {
+.star-icon.favorited ~ .confetti-container .confetti {
   animation: confetti-burst 0.8s forwards;
 }
 
