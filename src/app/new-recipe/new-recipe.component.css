@@ -15,6 +15,7 @@
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
   color: white;
   width: 40%;
+  z-index: 1000;
 }
 
 .create-form-title {
@@ -88,6 +89,7 @@ button:hover {
 }
 
 #name {
+  width: auto;
   max-width: 250px;
 }
 
