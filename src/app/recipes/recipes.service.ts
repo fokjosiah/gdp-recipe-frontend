@@ -1,12 +1,13 @@
 import { HttpClient } from "@angular/common/http";
 import { computed, inject, Injectable, signal } from "@angular/core";
 import { delay, map, Observable } from "rxjs";
-import { Recipe } from "./recipes.model";
+import { CreateRecipe, Recipe } from "./recipes.model";
 
 @Injectable({ providedIn: 'root'})
 export class RecipesService {
   private HttpClient = inject(HttpClient);
   private baseUrl = 'http://localhost:8000/recipes'
+
 
   recipes = signal<Recipe[]>([]);
   favoriteRecipes = computed<Recipe[]>(() => this.recipes()!.filter(r => r.favorite))
@@ -41,5 +42,10 @@ export class RecipesService {
         r => r.id === id ? { ...r, favorite: !r.favorite } : r
       )
     )
+  }
+
+  addRecipe(recipe: CreateRecipe) {
+    const updatedRecipes = this.HttpClient.post<Recipe[]>(this.baseUrl, recipe);
+    updatedRecipes.subscribe((updatedRecipeList) => this.recipes.set(updatedRecipeList))
   }
 }
