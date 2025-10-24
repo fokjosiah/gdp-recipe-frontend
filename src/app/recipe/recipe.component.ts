@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { Recipe } from '../recipes/recipes.model';
+import { RecipesService } from '../recipes/recipes.service';
 
 @Component({
   selector: 'app-recipe',
@@ -11,9 +12,13 @@ import { Recipe } from '../recipes/recipes.model';
 export class RecipeComponent {
   @Input({ required: true }) recipe!: Recipe;
   @Output() favoriteClicked = new EventEmitter<string>();
+  private recipeService = inject(RecipesService);
 
   toggleFavorite() {
     this.favoriteClicked.emit(this.recipe.id);
   }
 
+  deleteRecipe() {
+    this.recipeService.deleteRecipe(this.recipe.id);
+  }
 }

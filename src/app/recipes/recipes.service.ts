@@ -48,4 +48,12 @@ export class RecipesService {
     const updatedRecipes = this.HttpClient.post<Recipe[]>(this.baseUrl, recipe);
     updatedRecipes.subscribe((updatedRecipeList) => this.recipes.set(updatedRecipeList))
   }
+
+  deleteRecipe(id: string) {
+    this.HttpClient.delete<string>(`${this.baseUrl}/:id?id=${id}`).subscribe((returnMsg) => {
+      if (returnMsg === `Recipe with id ${id} was deleted.`) {
+        this.recipes.set(this.recipes().filter(r => r.id !== id));
+      }
+    })
+  }
 }
