@@ -1,0 +1,101 @@
+.backdrop {
+  background-color: rgba(0, 0, 0, 0.597);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+.create-form {
+  margin-top: 15vh;
+  background-color: rgb(115, 186, 67);
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+  color: white;
+  width: 40%;
+  z-index: 1000;
+}
+
+.create-form-title {
+  font-size: 1.2rem;
+}
+
+.form-container {
+  max-width: 600px;       /* total form width */
+  margin: 0 auto;         /* center on page */
+  padding: 0 20px;        /* side padding */
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-row-two {
+  display: flex;
+  gap: 20px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  font-size: 0.75rem;        /* smaller text */
+  text-transform: uppercase; /* make it all caps */
+  letter-spacing: 0.05em;    /* subtle spacing */
+  margin-bottom: 4px;        /* small gap above input */
+}
+
+.form-input {
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  color: rgb(255, 255, 255);
+  background-color:rgba(0, 0, 0, 0.269);
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: "Poppins", sans-serif;
+}
+
+.form-input:focus {
+  outline: none; /* remove the default blue */
+  border-color: #2563eb; /* custom border */
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15); /* subtle glow */
+}
+
+#instructions {
+  height: 200px;
+}
+
+button {
+  width: 120px;
+  height: 50px;
+  background-color: #006f0d;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+button:hover {
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+}
+
+#prep-time {
+  max-width: 160px;
+}
+
+#name {
+  width: auto;
+  max-width: 250px;
+}
+
+button:disabled {
+  background-color: gray;
+  color: lightgray;
+  cursor: not-allowed;
+  opacity: 0.6; /* optional: subtle transparency */
+}

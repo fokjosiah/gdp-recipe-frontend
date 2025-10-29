@@ -1,26 +1,30 @@
-import { Component } from '@angular/core';
+import { asNativeElements, Component, computed, inject, signal, WritableSignal } from '@angular/core';
 
 import { HeaderComponent } from './header/header.component';
-import { UserComponent } from './user/user.component';
-import { DUMMY_USERS } from './dummy-users';
-import { TasksComponent } from "./tasks/tasks.component";
+import { RecipesComponent } from "./recipes/recipes.component";
+import { RecipesService } from './recipes/recipes.service';
+import { NewRecipeComponent } from "./new-recipe/new-recipe.component";
 
 @Component({
     selector: 'app-root',
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
-    imports: [HeaderComponent, UserComponent, TasksComponent]
+    imports: [HeaderComponent, RecipesComponent, NewRecipeComponent]
 })
 export class AppComponent {
-  users = DUMMY_USERS;
-  selectedUserId?: string;
+  private recipeService = inject(RecipesService);
+  isCreatingRecipe = false;
+  recipes = this.recipeService.recipes;
+  favoriteRecipes = this.recipeService.favoriteRecipes;
+  toggleFavoriteRecipe = this.recipeService.toggleFavorite;
+  currentPage:WritableSignal<string> = signal('');
 
-  get selectedUser() {
-    return this.users.find((user) => user.id === this.selectedUserId);
+  onCloseCreateRecipe() {
+    this.isCreatingRecipe = false;
   }
 
-  onSelectUser(id: string) {
-    this.selectedUserId = id;
+  onOpenCreateRecipe() {
+    this.isCreatingRecipe = true;
   }
 }

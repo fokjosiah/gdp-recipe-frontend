@@ -1,0 +1,49 @@
+<div class="backdrop" (click)="onCancel()"></div>
+  <dialog open class="create-form">
+      <form (ngSubmit)="onSubmitForm()">
+        <p class="create-form-title">Add a new recipe:</p>
+
+        <div class="form-container">
+          <div class="form-row-two">
+
+            <div class="form-field">
+              <label for="name" class="form-label">Name:</label>
+              <input id="name" class="form-input" [(ngModel)]="recipeName" [ngModelOptions]="{standalone: true}" required>
+            </div>
+
+            <div class="form-field">
+              <label for="difficulty" class="form-label">Difficulty:</label>
+              <select id="difficulty" class="form-input" [(ngModel)]="recipeDifficulty" [ngModelOptions]="{standalone: true}" required>
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="prep-time" class="form-label">Prep time (mins):</label>
+              <input type="number" id="prep-time" class="form-input" [(ngModel)]="recipePrepTime" [ngModelOptions]="{standalone: true}" required>
+            </div>
+
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="ingredients" class="form-label">Ingredients:</label>
+              <textarea placeholder="Ensure items are separated by commas..." id="ingredients" class="form-input" [(ngModel)]="recipeIngredients" [ngModelOptions]="{standalone: true}" required></textarea>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="instructions" class="form-label">Instructions:</label>
+              <textarea id="instructions" class="form-input" [(ngModel)]="recipeInstructions" [ngModelOptions]="{standalone: true}" required></textarea>
+            </div>
+          </div>
+
+          <button type="submit" [disabled]="!isFormValid()">Add!</button>
+
+        </div>
+      </form>
+  </dialog>
+

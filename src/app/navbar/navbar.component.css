@@ -1,0 +1,14 @@
+.navbar {
+  justify-content: space-around;
+  display: flex;
+}
+
+p:hover {
+  cursor: pointer;
+  transform: scale(1.05); /* slight grow effect */
+  transition: 0.2s ease;
+}
+
+.underlined {
+  text-decoration: underline;
+}
