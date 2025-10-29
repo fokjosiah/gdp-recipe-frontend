@@ -5,7 +5,7 @@
 @else {
   <div class="scrollable">
   @for (recipe of recipes; track recipe.id) {
-    <app-recipe [recipe]="recipe" (favoriteClicked)="onFavoriteClicked($event)"/>
+    <app-recipe [recipe]="recipe" (favoriteClicked)="onFavoriteClicked($event)" (editClicked)="onEditClicked($event)"/>
   }
   </div>
 }

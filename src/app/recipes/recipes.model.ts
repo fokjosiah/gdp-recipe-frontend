@@ -2,7 +2,6 @@ export type RecipeDifficulty = "easy" | "medium" | "hard"
 
 export interface Recipe extends CreateRecipe{
   id: string,
-  favorite: boolean
 }
 
 export interface CreateRecipe {
@@ -11,4 +10,5 @@ export interface CreateRecipe {
   instructions: string,
   prep_time_mins: number,
   difficulty: RecipeDifficulty,
+  favorite: boolean
 }

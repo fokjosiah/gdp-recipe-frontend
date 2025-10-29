@@ -1,14 +1,17 @@
 @if (isCreatingRecipe) {
-  <app-new-recipe (close)="onCloseCreateRecipe()"/>
+  <app-recipe-form mode="create" (close)="onCloseCreateRecipe()"/>
+}
+@if (isEditingRecipe) {
+  <app-recipe-form mode="edit" (close)="onCloseEditRecipe()" [recipe]="editingRecipe()"/>
 }
 <app-header [currentPage]="currentPage" (openCreateRecipe)="onOpenCreateRecipe()"/>
 
 <main>
   @if (currentPage() === 'recipes') {
-    <app-recipes [recipes]="recipes()" (favoriteClicked)="toggleFavoriteRecipe($event)" />
+    <app-recipes [recipes]="recipes()" (favoriteClicked)="toggleFavoriteRecipe($event)" (editClicked)="onOpenEditRecipe($event)"/>
   }
   @else if (currentPage() === 'favorites') {
-    <app-recipes [recipes]="favoriteRecipes()" (favoriteClicked)="toggleFavoriteRecipe($event)" />
+    <app-recipes [recipes]="favoriteRecipes()" (favoriteClicked)="toggleFavoriteRecipe($event)" (editClicked)="onOpenEditRecipe($event)"/>
   }
   @else () {
     <h1 id="fallback">Hope you're hungry!🥪</h1>

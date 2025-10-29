@@ -12,6 +12,7 @@ import { RecipesService } from '../recipes/recipes.service';
 export class RecipeComponent {
   @Input({ required: true }) recipe!: Recipe;
   @Output() favoriteClicked = new EventEmitter<string>();
+  @Output() editClicked = new EventEmitter<string>();
   private recipeService = inject(RecipesService);
 
   toggleFavorite() {
@@ -21,4 +22,9 @@ export class RecipeComponent {
   deleteRecipe() {
     this.recipeService.deleteRecipe(this.recipe.id);
   }
+
+  onEditRecipe() {
+    this.editClicked.emit(this.recipe.id);
+  }
+
 }

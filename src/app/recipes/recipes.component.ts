@@ -13,9 +13,14 @@ import { RecipesService } from './recipes.service';
 export class RecipesComponent {
   @Input({ required:true }) recipes?: Recipe[];
   @Output() favoriteClicked = new EventEmitter<string>();
+  @Output() editClicked = new EventEmitter<string>();
 
   onFavoriteClicked(id: string) {
     //toggle the favorite value of the given recipe by id
     this.favoriteClicked.emit(id);
+  }
+
+  onEditClicked(id: string) {
+    this.editClicked.emit(id);
   }
 }

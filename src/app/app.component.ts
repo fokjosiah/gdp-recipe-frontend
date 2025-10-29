@@ -1,9 +1,10 @@
-import { asNativeElements, Component, computed, inject, signal, WritableSignal } from '@angular/core';
+import { Component, computed, inject, signal, WritableSignal, Signal } from '@angular/core';
 
 import { HeaderComponent } from './header/header.component';
 import { RecipesComponent } from "./recipes/recipes.component";
 import { RecipesService } from './recipes/recipes.service';
-import { NewRecipeComponent } from "./new-recipe/new-recipe.component";
+import { NewRecipeComponent } from "./recipe-form/recipe-form.component";
+import { Recipe } from './recipes/recipes.model';
 
 @Component({
     selector: 'app-root',
@@ -15,10 +16,13 @@ import { NewRecipeComponent } from "./new-recipe/new-recipe.component";
 export class AppComponent {
   private recipeService = inject(RecipesService);
   isCreatingRecipe = false;
+  isEditingRecipe = false;
   recipes = this.recipeService.recipes;
   favoriteRecipes = this.recipeService.favoriteRecipes;
   toggleFavoriteRecipe = this.recipeService.toggleFavorite;
   currentPage:WritableSignal<string> = signal('');
+  editingRecipeId: WritableSignal<string | null> = signal(null);
+  editingRecipe: Signal<Recipe | null> = computed(() => this.recipes().find(recipe => recipe.id === this.editingRecipeId()) || null);
 
   onCloseCreateRecipe() {
     this.isCreatingRecipe = false;
@@ -26,5 +30,14 @@ export class AppComponent {
 
   onOpenCreateRecipe() {
     this.isCreatingRecipe = true;
+  }
+
+  onOpenEditRecipe(id: string) {
+    this.isEditingRecipe = true;
+    this.editingRecipeId.set(id);
+  }
+
+  onCloseEditRecipe() {
+    this.isEditingRecipe = false;
   }
 }
