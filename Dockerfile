@@ -14,15 +14,15 @@ USER root
 
 # Check for package update
 RUN dnf -y update-minimal --security --sec-severity=Important --sec-severity=Critical && \
-# Install git, nano, nodejs and npm
-dnf module enable nodejs:22 -y && \
-dnf install git nano nodejs npm -y; \
-# clear cache
-dnf clean all
+  # Install git, nano, nodejs and npm
+  dnf module enable nodejs:22 -y && \
+  dnf install git nano nodejs npm -y; \
+  # clear cache
+  dnf clean all
 
 # Create user and set permissions
 RUN groupadd -g ${GROUP_ID} ${USER_NAME} && \
-    useradd -u ${USER_ID} -r -g ${USER_NAME} -m -d ${HOME} -s /bin/bash ${USER_NAME}
+  useradd -u ${USER_ID} -r -g ${USER_NAME} -m -d ${HOME} -s /bin/bash ${USER_NAME}
 
 #-----------------------------
 
@@ -39,24 +39,20 @@ WORKDIR ${HOME}
 # -------------------------
 # Stage 1: Build app
 # -------------------------
-  FROM base AS build
+FROM base AS build
 
-  # Set working directory
-  WORKDIR /app
+# Set working directory
+WORKDIR /app
 
-  # Copy package.json and package-lock.json first (for caching)
-  COPY package*.json ./
+# Copy all files
+COPY . .
 
-  # Install all dependencies including devDependencies
-  RUN npm install
+# Install all dependencies including devDependencies
+RUN npm install
+RUN npm install -g @angular/cli
 
-  # Copy the rest of the app source
-  COPY . .
-
-  # Build Angular app in production mode
-  RUN ng build --configuration production
-
-
+# Build Angular app in production mode
+RUN ng build --configuration production
 
 # DEPLOYMENT EXAMPLE:
 #-----------------------------
@@ -71,14 +67,10 @@ COPY --from=build /app/dist /app/dist
 
 # Check App permissions
 RUN chown -R ${USER_NAME}:${USER_NAME} ${APP} && \
-    chmod -R 0750 ${APP}
-
-#install angular cli by default everytime container is rebuilt
-RUN npm install -g @angular/cli
+  chmod -R 0750 ${APP}
 
 ## Install project requirements, build project
-RUN npm install -g http-server ; \
-ng build --configuration production
+RUN npm install -g http-server
 
 # Run App as User
 # USER ${USER_NAME}

@@ -1,12 +1,13 @@
 import { HttpClient } from "@angular/common/http";
 import { computed, inject, Injectable, signal } from "@angular/core";
-import { delay, map, Observable } from "rxjs";
+import { map, Observable } from "rxjs";
 import { CreateRecipe, Recipe } from "./recipes.model";
+import { environment } from "../../environments/environment";
 
 @Injectable({ providedIn: 'root'})
 export class RecipesService {
   private HttpClient = inject(HttpClient);
-  private baseUrl = 'http://localhost:8000/recipes'
+  private baseUrl = `${environment.backendUrl}:${environment.backendPort}${environment.backendRootEndpoint}`;
 
 
   recipes = signal<Recipe[]>([]);
