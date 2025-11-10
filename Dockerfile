@@ -22,7 +22,7 @@ dnf clean all
 
 # Create user and set permissions
 RUN groupadd -g ${GROUP_ID} ${USER_NAME} && \
-    useradd -u ${USER_ID} -r -g ${USER_NAME} -m -d ${HOME} -s /bin/bash ${USER_NAME} 
+    useradd -u ${USER_ID} -r -g ${USER_NAME} -m -d ${HOME} -s /bin/bash ${USER_NAME}
 
 #-----------------------------
 
@@ -36,6 +36,28 @@ EXPOSE 8000
 USER ${USER_NAME}
 WORKDIR ${HOME}
 
+# -------------------------
+# Stage 1: Build app
+# -------------------------
+  FROM base AS build
+
+  # Set working directory
+  WORKDIR /app
+
+  # Copy package.json and package-lock.json first (for caching)
+  COPY package*.json ./
+
+  # Install all dependencies including devDependencies
+  RUN npm install
+
+  # Copy the rest of the app source
+  COPY . .
+
+  # Build Angular app in production mode
+  RUN ng build --configuration production
+
+
+
 # DEPLOYMENT EXAMPLE:
 #-----------------------------
 
@@ -45,7 +67,7 @@ FROM base
 ## Move to app folder, copy project into container
 WORKDIR ${APP}
 ## REPLACE: replace this COPY statement with project specific files/folders
-COPY . . 
+COPY --from=build /app/dist /app/dist
 
 # Check App permissions
 RUN chown -R ${USER_NAME}:${USER_NAME} ${APP} && \
